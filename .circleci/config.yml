@@ -6,10 +6,11 @@ orbs:
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:10.24.1
+      - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages
+      - node/install-packages:
+            override-ci-command: npm install
 #      - run:
 #          name: "NPM Install bits"
 #          command: "npm install"
