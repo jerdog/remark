@@ -1,16 +1,16 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  build-and-test:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:10
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "NPM Install bits"
+          command: "npm install"
 
 workflows:
-  say-hello-workflow:
+  build-and-test:
     jobs:
-      - say-hello
+      - build-and-test
