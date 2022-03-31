@@ -2,6 +2,7 @@ version: 2.1
 
 orbs: 
     node: circleci/node@5.0.2
+    browser-tools: circleci/browser-tools@1.2.5
 
 jobs:
   build-and-test:
@@ -12,6 +13,8 @@ jobs:
       tag: '13.14'
     steps:
       - checkout
+      - browser-tools/install-browser-tools:
+          chrome-version: latest      
       - node/install-packages:
             override-ci-command: npm install
       - run:
