@@ -27,4 +27,5 @@ workflows:
       - build-and-test
       - node/test:
           test-results-for: mocha
-
+          requires:
+            - build-and-test
