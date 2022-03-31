@@ -11,15 +11,17 @@ jobs:
       - checkout
       - node/install-packages:
             override-ci-command: npm install
+      - node/test:
+          test-results-for: mocha
 #      - run:
 #          name: "NPM Install bits"
 #          command: "npm install"
 #      - run:
 #          name: "Node make deps"
 #          command: "node make all"
-      - run:
-          name: "NPM test"
-          command: "npm test"
+#      - run:
+#          name: "NPM test"
+#          command: "npm test"
 
 workflows:
   build-and-test:
