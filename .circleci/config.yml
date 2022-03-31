@@ -9,12 +9,13 @@ jobs:
       - image: cimg/node:10.24.1
     steps:
       - checkout
-      - run:
-          name: "NPM Install bits"
-          command: "npm install"
-      - run:
-          name: "Node make deps"
-          command: "node make all"
+      - node/install-packages
+#      - run:
+#          name: "NPM Install bits"
+#          command: "npm install"
+#      - run:
+#          name: "Node make deps"
+#          command: "node make all"
       - run:
           name: "NPM test"
           command: "npm test"
