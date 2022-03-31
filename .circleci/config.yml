@@ -7,10 +7,15 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:lts
+    executor:
+      name: node/default
+      tag: '13.14'
     steps:
       - checkout
       - node/install-packages:
             override-ci-command: npm install
+      - run:
+          command: npm run test
 #      - run:
 #          name: "NPM Install bits"
 #          command: "npm install"
@@ -25,7 +30,7 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
-      - node/test:
-          test-results-for: mocha
-          requires:
-            - build-and-test
+#      - node/test:
+#          test-results-for: mocha
+#          requires:
+#            - build-and-test
