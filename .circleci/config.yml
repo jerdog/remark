@@ -8,9 +8,9 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:lts
-    executor:
-      name: node/default
-      tag: '13.14'
+#    executor:
+#      name: node/default
+#      tag: '13.14'
     steps:
       - checkout
       - browser-tools/install-browser-tools:
