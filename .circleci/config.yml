@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "NPM Install bits"
-          command: "npm install"
+          name: "NPM Install bits & deps"
+          command: "npm install; node make all"
       - run:
           name: "NPM test"
           command: "npm test"
