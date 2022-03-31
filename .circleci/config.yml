@@ -9,6 +9,9 @@ jobs:
       - run:
           name: "NPM Install bits"
           command: "npm install"
+      - run:
+          name: "NPM test"
+          command: "npm test"
 
 workflows:
   build-and-test:
