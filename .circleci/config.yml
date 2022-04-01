@@ -5,7 +5,7 @@ orbs:
     browser-tools: circleci/browser-tools@1.2.5
 
 jobs:
-  build-and-test-nodev8:
+  nodev8:
     executor:
       name: node/default
       tag: '8.17.0'
@@ -15,13 +15,12 @@ jobs:
           paths:
             - node_modules
       - checkout
-      - browser-tools/install-browser-tools:
-          chrome-version: latest      
+      - browser-tools/install-chrome 
       - node/install-packages:
             override-ci-command: npm install
       - run:
           command: npm run test
-  build-and-test-nodev10:
+  nodev10:
     executor:
       name: node/default
       tag: '10.24.1'
@@ -38,13 +37,8 @@ jobs:
       - run:
           command: npm run test
 
-
 workflows:
   build-and-test:
     jobs:
-      - build-and-test-nodev8
-      - build-and-test-nodev10
-#      - node/test:
-#          test-results-for: mocha
-#          requires:
-#            - build-and-test
+      - nodev8
+      - nodev10
