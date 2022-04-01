@@ -30,8 +30,7 @@ jobs:
           paths:
             - node_modules
       - checkout
-      - browser-tools/install-browser-tools:
-          chrome-version: latest      
+      - browser-tools/install-chrome      
       - node/install-packages:
             override-ci-command: npm install
       - run:
