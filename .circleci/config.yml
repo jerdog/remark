@@ -5,13 +5,31 @@ orbs:
     browser-tools: circleci/browser-tools@1.2.5
 
 jobs:
-  build-and-test:
-#    docker:
-#      - image: cimg/node:lts
+  build-and-test-nodev8:
     executor:
       name: node/default
-      tag: '13.14'
+      tag: '8.17.0'
     steps:
+      - save_cache:
+          key: node-cache
+          paths:
+            - node_modules
+      - checkout
+      - browser-tools/install-browser-tools:
+          chrome-version: latest      
+      - node/install-packages:
+            override-ci-command: npm install
+      - run:
+          command: npm run test
+  build-and-test-nodev10:
+    executor:
+      name: node/default
+      tag: '10.24.1'
+    steps:
+      - save_cache:
+          key: node-cache
+          paths:
+            - node_modules
       - checkout
       - browser-tools/install-browser-tools:
           chrome-version: latest      
@@ -20,10 +38,12 @@ jobs:
       - run:
           command: npm run test
 
+
 workflows:
   build-and-test:
     jobs:
-      - build-and-test
+      - build-and-test-nodev8
+      - build-and-test-nodev10
 #      - node/test:
 #          test-results-for: mocha
 #          requires:
